@@ -5,19 +5,15 @@ import { fetchUsers } from './userActions.jsx';
 
 class Layout extends React.Component {
 
-    handleClick() {
-        this.props.dispatch(fetchUsers());
-    }
-
     render() {
         return (
             <div>
                 <h1>Users</h1>
-                <UserList users={this.props.users} />
-                <button onClick={this.handleClick.bind(this)}>Load</button>
+                <UserList users={this.props.users} onClick={this.props.fetchUsers} />
             </div>
         );
     }
+
 }
 
 const mapStateToProps = state => {
@@ -26,14 +22,26 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchUsers: () => dispatch(fetchUsers())
+    }
+}
+
 class UserList extends React.Component {
     render() {
         const peeps = this.props.users.map(user => <li>{user.name}</li>);
 
-        return (
-            <ul>{peeps}</ul>
-        );
+        if (peeps.length > 0) {
+            return (
+                <ul>{peeps}</ul>
+            );
+        } else {
+            return (
+                <button onClick={this.props.onClick}>Load Users</button>
+            );
+        }
     }
 }
 
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
