@@ -9,7 +9,7 @@ export default function reducer(state={
             return {...state, fetching: true};
         }
         case 'FETCH_USER_FULFILLED': {
-            return {...state, users: action.payload, fetching: false, fetched: true};
+            return {...state, users: action.payload.data, fetching: false, fetched: true};
         }
         case 'FETCH_USER_REJECTED': {
             return {...state, fetching: false, fetched: false, error: action.payload};

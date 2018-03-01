@@ -1,8 +1,15 @@
-import axios from 'axios';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import store from './store.jsx';
+import Layout from './layout.jsx';
 
-store.dispatch({
-    type: "FETCH_USER",
-    payload: axios.get('/users')
-});
+const app = document.getElementById('root');
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Layout />
+    </Provider>, 
+    app
+);

@@ -9,5 +9,5 @@ def index():
 
 @app.route('/users')
 def users():
-    data = [{'name': 'bob'}, {'name': 'larry'}]
+    data = [{'name': 'Bob'}, {'name': 'Larry'}, {'name': 'Bonnie'}]
     return Response(json.dumps(data), mimetype='application/json')
