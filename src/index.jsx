@@ -10,6 +10,6 @@ const app = document.getElementById('root');
 ReactDOM.render(
     <Provider store={store}>
         <Layout />
-    </Provider>, 
+    </Provider>,
     app
 );
